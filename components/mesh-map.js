@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { geoAlbersUsa, geoPath } from "d3-geo"
-import { feature, mesh } from "topojson-client";
+import { mesh } from "topojson-client";
 
 const projection = geoAlbersUsa()
   .scale(1000)
@@ -18,8 +18,7 @@ export default function MeshMap({url, geoName, stroke}) {
           }
           
           response.json().then(data => {
-            console.log(mesh(data, data.objects[geoName]))
-              setGeographies(mesh(data, data.objects[geoName]).coordinates);
+              setGeographies(mesh(data, data.objects[geoName]));
             })
         })
     }, [])
@@ -28,11 +27,11 @@ export default function MeshMap({url, geoName, stroke}) {
       <svg viewBox="0 0 800 450" width="100%" height="100%">
         <g className={geoName}>
           {
-            geographies.map((d,i) => (
+           ((
               <path
-                key={ `path-${ i }` }
-                d={ geoPath().projection(projection)(d) }
-                fill='transparent'
+                key={ `path-${geoName}` }
+                d={ geoPath().projection(projection)(geographies) }
+                fill='none'
                 stroke={stroke}
                 strokeWidth={ 0.5 }
               />

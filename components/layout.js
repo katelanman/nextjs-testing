@@ -6,21 +6,27 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { NavbarBrand } from 'react-bootstrap';
 import styles from '../styles/layout.module.css';
+import Link from 'next/link';
 
-function PageTab({tabName}) {
-  return <button className={styles.NavTab}>{tabName}</button>;
+function PageTab({tabName, href, active}) {
+  return <Link href={href}><button className={styles.NavTab + " " + (active ? styles.CurrentPage : "")}>
+      {tabName}
+    </button></Link>;
 }
 
 function InfoItem({itemName}) {
   return <button className={styles.NavTab}>{itemName}</button>;
 }
 
-export default function Layout({ children }) {
+export default function Layout({ children, currPage }) {
   const pages = ['Home', 'Map Explorer'];
   const pageTabs = pages.map((page) => {
+    const href = page.replace(' ', '')
+    const active = currPage === page;
+
     return (
       <span key={page}>
-        <PageTab tabName={page}/>
+        <PageTab tabName={page} href={href} active={active}/>
       </span>
     )
   })

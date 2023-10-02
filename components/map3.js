@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { geoAlbersUsa, geoPath } from "d3-geo"
-import { feature, mesh } from "topojson-client";
+import { feature } from "topojson-client";
 
 const projection = geoAlbersUsa()
   .scale(1000)
@@ -19,7 +19,6 @@ export default function Map({url, geoName, stroke}) {
         }
         
         response.json().then(data => {
-          console.log(feature(data, data.objects[geoName]))
             setGeographies(feature(data, data.objects[geoName]).features);
           }).then(() => {
             setFills(Array(geographies.length).fill('#DADADA'));
@@ -41,6 +40,7 @@ export default function Map({url, geoName, stroke}) {
             <path
               key={ `path-${ i }` }
               d={ geoPath().projection(projection)(d) }
+              // {...console.log(geoPath().projection(projection)(d))}
               fill={geoFills[i] !== '#E57200' ? '#DADADA' : geoFills[i]}
               stroke={stroke}
               strokeWidth={ 0.5 }

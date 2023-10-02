@@ -28,6 +28,10 @@
     font-family: "Franklin Gothic Medium", sans-serif;
 }
 
+.CurrentPage {
+    font-weight: bold;
+}
+
 #NavContainer {
     position: sticky;
     top: 0;

@@ -5,213 +5,243 @@
   height: 100%;
 }
 
-.TopicTab {
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
-  color:#666666;
-  font-family: "Franklin Gothic Medium", sans-serif;
-  font-size: 14px;
-  font-weight: bolder;
-}
-
-.TopicBar {
-  display: flex;
-  width: 100%;
-  background-color: #DADADA;
-  flex-basis: content;
-  position: sticky;
-  top: 0;
-}
-
-.TabContainer {
-  float: left;
-  background-color: #DADADA;
-  padding: 0.8% 0% 0.2% 0.8%;
-}
-
-.ActiveTab {
-  text-decoration: underline;
-  text-decoration-color: #E57200;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 4px;
-}
-
-.RowContent {
-  flex: 1 1 auto;
-}
-
 .ContentInvisible {
   display: none !important;
 }
 
-.VisContainer {
-  flex-basis: 65%;
-  height: 91%;
-  border: 3px solid #DADADA;
-  margin: 2%;
-  margin-right: 0%;
-  overflow: scroll;
-}
-
-.TitleBox {
-  color: #666666;
-  padding: 2% 3%;
-  border-bottom: 1px solid #DADADA;
-  background-color: #ffffff;
-  position: sticky;
-  top: 0;
-}
-
 .ToggleIcon {
-  fill: #666666;
+  fill: var(--basic-dark);
   align-self: flex-end;
-  margin: auto 0;
   margin-right: 0;
 }
 
-.SummaryBox {
-  display: flex;
-  color: #666666;
-  background-color: #DADADA;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.SummaryItem {
-  padding: 4%;
-}
-
-.SummaryValue {
-  color: #E57200;
-  font-weight: bold;
-  font-size: 25px;
-}
-
-.SummaryDescription {
-  color: #666666;
-  font-size: 12px;
-}
-
-.FilterSelector {
-  margin: 0% 5%;
-  width: 90%;
-}
-
-.FilterDropdown {
-  width: 100%;
-  color: #666666;
-  background-color: #F1F1EF;
-  border: none;
-  padding-top: 2%;
-  padding-left: 3%;
-  min-height: 30px;
-  border-radius: 5px;
-}
-
 #MainContent {
-  height: 90%;
+  /* height: 90%; */
   display: flex;
   flex-direction: row;
+  overflow: auto;
 }
 
-#FilterBox {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 25%;
-  height: 91%;
-  border: 3px solid #DADADA;
-  margin: 2%;
-  overflow: hidden;
-}
+/* Topic Bar */
+  .TopicTab {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: var(--basic-medium);
+    font-family: "Franklin Gothic Medium", sans-serif;
+    font-size: 14px;
+    font-weight: bolder;
+  }
 
-#FilterHead {
-  font-style: italic;
-  background-color: #F1F1EF;
-  color: #666666;
-  padding: 5%;
-  font-size: 20px;
-  position: sticky;
-  top: 0;
-}
+  .TopicBar {
+    display: flex;
+    width: 100%;
+    background-color: var(--brand-medium);
+    flex-basis: content;
+    position: sticky;
+    top: 0;
+  }
 
-#FilterIcon {
-  width: 10%;
-  fill: #666666;
-  stroke: #666666;
-  stroke-width: 20;
-  margin-right: 5%;
-}
+  .TabContainer {
+    float: left;
+    background-color: var(--brand-medium);
+    padding: 0.8% 0% 0.2% 0.8%;
+  }
 
-#FilterItems {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  overflow: scroll;
-  padding-bottom: 40px;
-}
+  .ActiveTab {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+  }
+/* Topic Bar */
 
-#MapContainer {
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  width: 90%;
-  margin: auto 5%;
-}
+/* Vis Tools */
+  .VisContainer {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+    height: 91%;
+    margin: 2%;
+    background-color: var(--basic-light);
+    overflow: hidden;
+  }
 
-#MapToggle {
-  width: 100%;
-  min-height: 50px;
-  /* margin: 0% 5%; */
-  margin-top: 5%;
-  background-color: #F1F1EF;
-  border-bottom: 1px solid #DADADA;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3% 5%;
-  color: #495E9D;
-  font-style: italic;
-}
+  .TitleBox {
+    color: var(--basic-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0% 2vw;
+    border-bottom: 3px solid var(--basic-light);
+    background-color: var(--basic-medium);
+    position: sticky;
+    top: 0;
+    min-height: 95px;
+  }
 
-#FilterMap {
-  width: 100%;
-  min-height: 300px;
-}
+  .BoxHeader {
+    font-size: 20px;
+    font-weight: 500;
+  }
 
-#FilterMapBox {
-  display: flex;
-  width: 100%;
-  /* margin: 0% 5%; */
-  background-color: #F1F1EF;
-  min-height: 300px;
-}
+  .VariableName {
+    font-style: italic;
+  }
 
-#SelectedDesc {
-  font-size: 16px;
-  color: #666666;
-  margin: 0% 5%;
-  border: 1px solid #DADADA;
-  padding: 2%;
-  height: 30%;
-  min-height: 120px;
-  overflow: hidden;
-}
+  .VisItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.5vh;
+    gap: 2.5vh;
+    overflow-y: scroll;
+    padding-bottom: 0;
+  }
 
-#SelectedBox {
-  font-size: 12px;
-  font-weight: lighter;
-  border: 1px solid #DADADA;
-  padding: 2%;
-  min-height: 70%;
-  max-height: 90%;
-  overflow: scroll;
-}
+  .SummaryBox {
+    display: flex;
+    color: var(--basic-dark);
+    background-color: var(--background);
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 5px;
+  }
+
+  .SummaryItem {
+    padding: 4%;
+  }
+
+  .SummaryValue {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .SummaryDescription {
+    color: var(--basic-dark);
+    font-size: 12px;
+  }
+/* Vis Tools */
+
+/* Filter */
+  .FilterDropdown {
+    width: 100%;
+    color: var(--basic-dark);
+    background-color: var(--background);
+    border: none;
+    padding: 0% 3%;
+    min-height: 35px;
+    border-radius: 5px;
+  }
+
+  #FilterBox {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 25%;
+    height: 91%;
+    margin: 2%;
+    margin-right: 0%;
+    overflow: hidden;
+    background-color: var(--basic-light);
+    border-bottom: 3px solid var(--basic-light);
+  }
+
+  #FilterHead {
+    display: flex;
+    background-color: var(--basic-medium);
+    border-bottom: 3px solid var(--basic-light);
+    color: var(--basic-dark);
+    padding-left: 2vw;
+    padding: 5%;
+    position: sticky;
+    top: 0;
+    min-height: 95px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  #FilterHeadItems {
+    display: flex;
+    margin: auto auto;
+  }
+
+  #FilterIcon {
+    width: 10%;
+    fill: var(--basic-dark);
+    stroke: var(--basic-dark);
+    margin-right: 5%;
+    /* height: 80%; */
+  }
+
+  #FilterItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.5vh;
+    overflow-y: scroll;
+    padding: 2.5vh;
+    padding-bottom: 0;
+  }
+
+  #MapContainer {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  #MapToggle {
+    width: 100%;
+    min-height: 50px;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3% 5%;
+    border-radius: 5px 5px 0 0;
+    color: var(--basic-dark);
+    /* font-style: italic; */
+  }
+
+  #FilterMap {
+    width: 100%;
+    min-height: 300px;
+  }
+
+  #FilterMapBox {
+    display: flex;
+    width: 100%;
+    background-color: var(--background);
+    min-height: 300px;
+    border-top: 2px solid var(--basic-medium);
+    border-radius: 0 0 5px 5px;
+  }
+
+  #SelectedDesc {
+    font-size: 16px;
+    color: var(--basic-dark);
+    border: 1px solid var(--basic-medium);
+    padding: 2%;
+    height: 30%;
+    min-height: 120px;
+    overflow: hidden;
+  }
+
+  #SelectedBox {
+    font-size: 12px;
+    font-weight: lighter;
+    border: 1px solid var(--basic-medium);
+    padding: 2%;
+    min-height: 70%;
+    max-height: 90%;
+    overflow-y: scroll;
+  }
+/* Filter */
 
 @media (max-width: 480px) {
   .TabContainer {
@@ -221,7 +251,7 @@
     height: 150px;
     min-height: 100px;
     padding: 0%;
-    border: 0.5px solid #666666;
+    border: 0.8px solid var(--brand);
     align-items: center; 
     padding-left: 2%;
   }
@@ -231,7 +261,7 @@
     flex-direction: column;
     width: 100%;
     max-height: 100%;
-    background-color: #DADADA;
+    background-color: var(--basic-medium);
     overflow-y: scroll;
     flex-basis: auto;
   }
@@ -245,16 +275,36 @@
     text-decoration: none;
   }
 
+  .TitleBox {
+    padding-left: 2%;
+  }
+
+  .BoxHeader {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    align-items: flex-start;
+    padding: 2%;
+    font-weight: normal;
+  }
+
+  .VariableName {
+    font-weight: normal;
+  }
+
+  /* .VisItems {
+    padding: 0;
+  } */
+
   .SummaryBox {
     flex-direction: column;
-    background-color: #F1F1EF;
+    background-color: var(--basic-light);
   }
 
   .VisContainer {
-    height: 60%;
-    min-height: 60%;
+    height: 65%;
+    min-height: 65%;
     margin: 0%;
-    background-color: #FFFFFF;
     border: none;
   }
 
@@ -269,19 +319,21 @@
     width: 100%;
     margin: 0%;
     border: none;
-    border-top: 3px solid #F1F1EF;
-    justify-content: flex-end;
-    background-color: #ffffff;
+    border-top: 3px solid var(--basic-medium);
     height: fit-content;
     max-height: 100%;
     align-self: flex-end;
+    justify-content: space-between;
     overflow: visible;
   }
 
   #FilterHead {
     order: 99;
     align-self: flex-end;
-    border-top: 2px solid #FFFFFF;
+    border-top: 2px solid var(--basic-light);
+    min-height: 80px;
+    height: 80px;
+    font-weight: normal;
   }
 
   #FilterHeadItems {
@@ -293,7 +345,5 @@
 
   #FilterItems {
     position: relative;
-    padding: 2% 0%;
-    align-content: start;
   }
 }

@@ -1,3 +1,27 @@
+:root {
+  --brand: #232D4B;
+  --brand-medium: #33426e;
+  --brand-light: #4D62A8;
+  --accent: #E57200;
+  --accent-light: #FF8F1F;
+  --basic-dark: #666666;
+  --basic-medium: #dadada;
+  --basic-light: #F5F5F5;
+  --background: #E8E8E8;
+}
+
+@media (min-width: 480px) {
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(102, 102, 102, 0.5);
+    border-right: 1px solid var(--basic-light);
+  }
+}
+
 body, html {
   font-family: "Franklin Gothic Medium", sans-serif !important;
   margin: 0%;

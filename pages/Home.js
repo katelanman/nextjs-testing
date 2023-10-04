@@ -7,6 +7,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import styles from '../styles/Home.module.css';
 
+function FilterIcon() {
+  return(
+      <svg id={styles.FilterIcon} viewBox="0 0 1024 1024"><path d="M640 288a64 64 0 1 1 0.032-128.032A64 64 0 0 1 640 288z m123.456-96c-14.304-55.04-64-96-123.456-96s-109.152 40.96-123.456 96H128v64h388.544c14.304 55.04 64 96 123.456 96s109.152-40.96 123.456-96H896V192h-132.544zM640 864a64 64 0 1 1 0.032-128.032A64 64 0 0 1 640 864m0-192c-59.456 0-109.152 40.96-123.456 96H128v64h388.544c14.304 55.04 64 96 123.456 96s109.152-40.96 123.456-96H896v-64h-132.544c-14.304-55.04-64-96-123.456-96M384 576a64 64 0 1 1 0.032-128.032A64 64 0 0 1 384 576m0-192c-59.456 0-109.152 40.96-123.456 96H128v64h132.544c14.304 55.04 64 96 123.456 96s109.152-40.96 123.456-96H896v-64H507.456c-14.304-55.04-64-96-123.456-96"/></svg>
+  );
+}
+
 function TopicTab({topic, activeTab}) {
   return <button className={styles.TopicTab + ' ' + (activeTab === topic ? styles.ActiveTab : "")}>{topic}</button>;
 };
@@ -21,23 +27,28 @@ function SummaryItem({value, description}) {
   );
 };
 
-function VisContents({topic, data, resolution, region, year}) {
+function VisContents({data, resolution, region, year}) {
   return (
-    <div>
+    <>
       <div className={styles.TitleBox}>
-        <h4>{topic + ": " + resolution + "s in " + region + ", " + year}</h4>
-        Variable Name
+        <div className={styles.BoxHeader}>
+            {resolution + " in " + region + ", " + year + ": "} 
+            <span className={styles.VariableName}>{"Variable Name"}</span>
+        </div>
       </div>
-      <div className={styles.SummaryBox}>
-        <SummaryItem value="0.82%" description="average percentage of income for internet"></SummaryItem>
-        <SummaryItem value="0.74%" description="median percentage of income for internet"></SummaryItem>
+
+      <div className={styles.VisItems}>
+        <div className={styles.SummaryBox}>
+          <SummaryItem value="0.82%" description="average percentage of income for internet"></SummaryItem>
+          <SummaryItem value="0.74%" description="median percentage of income for internet"></SummaryItem>
+        </div>
+        <div><BarChart data={data} /></div>
       </div>
-      <BarChart data={data} />
-    </div>
+    </>
   );
 };
 
-function FilterSelector({name, range, multiple=false}) {
+function FilterSelector({name, range, onChange, selected, multiple=false}) {
   const options = range.map((value) => {
     return (
         <option key={value} value={value}>{value}</option>
@@ -47,7 +58,7 @@ function FilterSelector({name, range, multiple=false}) {
   if (!multiple) {
     return(
       <div className={styles.FilterSelector} >
-        <select name={name} id={name} className={styles.FilterDropdown}>
+        <select name={name} id={name} className={styles.FilterDropdown} onChange={e => onChange(e.target.value)} defaultValue={selected}>
           {options}
         </select>
       </div>
@@ -57,7 +68,7 @@ function FilterSelector({name, range, multiple=false}) {
   // allow for multiple selections
   return(
     <div className={styles.FilterSelector} >
-      <select name={name} id={name} className={styles.FilterDropdown} multiple size='5'>
+      <select name={name} id={name} className={styles.FilterDropdown} multiple size='5' onChange={e => onChange(e.target.value)}>
         {options}
       </select>
     </div>
@@ -91,10 +102,10 @@ export default function Home() {
   const topics = ['Topic 1', 'Topic 2', 'Topic 3', 'Topic 4', 'Topic 5', 'Topic 6'];
 
   const [activeTab, setActiveTab] = useState(topics[0]);
-  const [currRes, setRes] = useState("Census Tract");
+  const [currRes, setRes] = useState("Census Tracts");
   const [currRegion, setRegion] = useState("Virginia");
   const [currYear, setYear] = useState("2019");
-  const [mapVisible, setMapVisible] = useState(false);
+  const [mapVisible, setMapVisible] = useState(true);
 
   const visMobilePosition = (topics.indexOf(activeTab) * 2) + 1;
 
@@ -138,18 +149,18 @@ export default function Home() {
   });
   const VisBoxes = topics.map((topic) => {
     return (
-      <span style={{'order': (largeWindow ? 0 : visMobilePosition)}} key={topic} className={styles.RowContent + " " + styles.VisContainer + " " + (activeTab === topic ? styles.ContentVisible : styles.ContentInvisible)}>
+      <div style={{'order': (largeWindow ? 0 : visMobilePosition)}} key={topic} className={styles.VisContainer + " " + (activeTab === topic ? styles.ContentVisible : styles.ContentInvisible)}>
         <VisContents topic={topic} data={data} resolution={currRes} region={currRegion} year={currYear}/>
-      </span>
+      </div>
     );
   });
 
   const Filter = (
-        <div id={styles.FilterBox} className={styles.RowContent} style={(!filterVisible || largeWindow) ? {} : {'minHeight': "100%"}}>
+        <div id={styles.FilterBox} style={(!filterVisible || largeWindow) ? {} : {'minHeight': "100%"}}>
         <div id={styles.FilterHead} onClick={largeWindow? () => {} : () => setFilterVisible(!filterVisible)}>
           <div id={styles.FilterHeadItems}>
             <div>
-              <svg id={styles.FilterIcon} viewBox="0 0 518.462 518.462"><g> <g> <g> <path d="M518.462,22.82H0l193.159,203.495l-0.014,269.327l132.173-68.37l-0.014-200.957L518.462,22.82z M212.837,463.286 l0.014-244.827L45.846,42.512h426.769L305.611,218.459l0.014,196.832L212.837,463.286z"></path> </g> </g> </g></svg>
+              <FilterIcon/>
               Select Filters
             </div>
             {largeWindow ? <></> : <ToggleIcon open={filterVisible} size={'8%'}/>}
@@ -158,7 +169,7 @@ export default function Home() {
         <div id={styles.FilterItems} className={filterVisible ? '' : styles.ContentInvisible}>
           <div id={styles.MapContainer}>
             <div id={styles.MapToggle} onClick={() => setMapVisible(!mapVisible)}>
-              Click to Filter Using Map
+              Filter Using Map
               <ToggleIcon open={!mapVisible} size={'10px'}/>
             </div>
             <div id={styles.FilterMapBox} className={mapVisible ? '' : styles.ContentInvisible}>
@@ -173,17 +184,17 @@ export default function Home() {
             </div>
           </div>
           
-          <FilterSelector name="Region" range={['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia']} multiple={true}/>
+          <FilterSelector name="Region" range={['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia']} multiple={true} onChange={setRegion}/>
 
-          <div id={styles.SelectedDesc}>
+          {/* <div id={styles.SelectedDesc}>
             Regions Selected
             <div id={styles.SelectedBox}>
               Select regions above by clicking on the map or using the region selector.
             </div>
-          </div>
+          </div> */}
 
-          <FilterSelector name="Resolution" range={['---- Select a Resolution ----', 'County', 'Census Tract', 'Block Group']}/>
-          <FilterSelector name="Year" range={['---- Select a Year ----', 2019, 2020, 2021]}/>
+          <FilterSelector name="Resolution" range={['Counties', 'Census Tracts', 'Block Groups']} onChange={setRes} selected={currRes}/>
+          <FilterSelector name="Year" range={[2019, 2020, 2021]} onChange={setYear} selected={currYear}/>
         </div>
         </div>
     );
@@ -193,11 +204,11 @@ export default function Home() {
       {/* topics show as own navbar in desktop view */}
       {largeWindow? <div className={styles.TopicBar}>{topicButtons}</div> : <></>}
 
-      <div id={styles.MainContent} className={styles.RowContent}>
+      <div id={styles.MainContent}>
         {/* group topic and corresponding vis in mobile view */}
-        {largeWindow ? VisBoxes : <div className={styles.TopicBar}>{topicButtons}{VisBoxes}</div>}
+        {largeWindow ? <>{Filter}{VisBoxes}</> : <><div className={styles.TopicBar}>{topicButtons}{VisBoxes}</div>{Filter}</>}
         
-        {Filter}
+ 
       </div>
     </div>
   </Layout>);

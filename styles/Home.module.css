@@ -318,7 +318,7 @@
     font-size: 12px;
     width: 100%;
     margin: 0%;
-    border: none;
+    border-bottom: none;
     border-top: 3px solid var(--basic-medium);
     height: fit-content;
     max-height: 100%;

@@ -334,6 +334,7 @@
     min-height: 80px;
     height: 80px;
     font-weight: normal;
+    border-bottom: none;
   }
 
   #FilterHeadItems {

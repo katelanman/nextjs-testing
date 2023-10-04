@@ -19,7 +19,7 @@
   /* height: 90%; */
   display: flex;
   flex-direction: row;
-  overflow: auto;
+  overflow: hidden;
 }
 
 /* Topic Bar */
@@ -32,8 +32,8 @@
     outline: none;
     color: var(--basic-medium);
     font-family: "Franklin Gothic Medium", sans-serif;
-    font-size: 14px;
-    font-weight: bolder;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   .TopicBar {
@@ -43,6 +43,7 @@
     flex-basis: content;
     position: sticky;
     top: 0;
+    border-bottom: 3px solid var(--brand-light);
   }
 
   .TabContainer {

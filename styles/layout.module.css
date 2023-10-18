@@ -8,7 +8,6 @@
 .NavbarUva {
     background-color: #232D4B;
     color: #F1F1EF;
-    font-family: "Franklin Gothic Medium", sans-serif;
     font-size: 18px;
 }
 
@@ -20,7 +19,6 @@
     overflow: hidden;
     outline: none;
     color: #F1F1EF;
-    font-family: "Franklin Gothic Medium", sans-serif;
     font-weight: lighter;
 }
 
@@ -28,7 +26,6 @@
     font-size: 20px;
     margin: 2%;
     color: #F1F1EF;
-    font-family: "Franklin Gothic Medium", sans-serif;
     vertical-align: bottom;
 }
 

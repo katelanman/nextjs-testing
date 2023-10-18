@@ -1,8 +1,9 @@
 import Layout from '../components/layout';
 import React, { useState, useEffect } from "react";
 import BarChart from '../components/test-bar';
-import Map from '../components/map3.js';
-import MeshMap from '../components/mesh-map.js';
+import { Map, MeshMap } from '../components/map3.js';
+import { USMap } from '../components/us-map';
+import { geoAlbersUsa } from "d3-geo"
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import styles from '../styles/Home.module.css';
@@ -155,15 +156,19 @@ export default function Home() {
     );
   });
 
+  const projection = geoAlbersUsa()
+    .scale(1000)
+    .translate([ 800 / 2, 450 / 2 ])
+
   const Filter = (
         <div id={styles.FilterBox} style={(!filterVisible || largeWindow) ? {} : {'minHeight': "100%"}}>
         <div id={styles.FilterHead} onClick={largeWindow? () => {} : () => setFilterVisible(!filterVisible)}>
           <div id={styles.FilterHeadItems}>
-            <div>
-              <FilterIcon/>
-              Select Filters
+            <div className={styles.FlexRow}>
+              {/* <FilterIcon/> */}
+              <div>Select Filters</div>
             </div>
-            {largeWindow ? <></> : <ToggleIcon open={filterVisible} size={'8%'}/>}
+            {largeWindow ? <></> : <FilterIcon/>}
           </div>
         </div>
         <div id={styles.FilterItems} className={filterVisible ? '' : styles.ContentInvisible}>
@@ -173,14 +178,16 @@ export default function Home() {
               <ToggleIcon open={!mapVisible} size={'10px'}/>
             </div>
             <div id={styles.FilterMapBox} className={mapVisible ? '' : styles.ContentInvisible}>
-              <TransformWrapper>
+              <USMap layer='counties'/>
+              {/* <TransformWrapper>
               <TransformComponent>
                 <svg id={styles.FilterMap}>
-                  <Map url="https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json" geoName="counties" stroke="#FFFFFF"/>
-                  <MeshMap url="https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json" geoName="states" stroke="#666666"/>
+                  <USMap/>
+                  <Map url="https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json" geoName="counties" stroke="#FFFFFF" projection={projection}/>
+                  <MeshMap url="https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json" geoName="states" stroke="#666666" projection={projection}/>
                 </svg>
               </TransformComponent>
-              </TransformWrapper>
+              </TransformWrapper> */}
             </div>
           </div>
           

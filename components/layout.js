@@ -19,7 +19,7 @@ function InfoItem({itemName}) {
 }
 
 export default function Layout({ children, currPage }) {
-  const pages = ['Home', 'Map Explorer'];
+  const pages = ['Home', 'Map Explorer', 'Comparison Tool', 'Data Downloader'];
   const pageTabs = pages.map((page) => {
     const href = page.replace(' ', '')
     const active = currPage === page;

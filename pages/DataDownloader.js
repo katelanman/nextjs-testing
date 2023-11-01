@@ -83,7 +83,7 @@ function ToggleIcon({open, size}) {
   );
 }
 
-export default function Home() {
+export default function DataDownloader() {
   const data = [
     {year: 1980, efficiency: 24.3, sales: 8949000},
     {year: 1985, efficiency: 27.6, sales: 10979000},
@@ -200,10 +200,10 @@ export default function Home() {
         </div>
     );
 
-  return (<Layout currPage='Home'> 
+  return (<Layout currPage='Data Downloader'> 
     <div className={styles.Box}>
       {/* topics show as own navbar in desktop view */}
-      {largeWindow? <div className={styles.TopicBar}>{topicButtons}</div> : <></>}
+      {/* {largeWindow? <div className={styles.TopicBar}>{topicButtons}</div> : <></>} */}
 
       <div id={styles.MainContent}>
         {/* group topic and corresponding vis in mobile view */}
@@ -213,6 +213,4 @@ export default function Home() {
       </div>
     </div>
   </Layout>);
-
-};
-
+}

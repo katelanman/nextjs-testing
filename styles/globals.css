@@ -6,8 +6,8 @@
   --accent-light: #FF8F1F;
   --basic-dark: #666666;
   --basic-medium: #dadada;
-  --basic-light: #F5F5F5;
-  --background: #E8E8E8;
+  --basic-light: #f5f5f5;
+  --background: #ececec;
 }
 
 @media (min-width: 480px) {
